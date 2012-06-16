@@ -51,12 +51,13 @@ var refresh=function(){
 			timer[i]++;
 		process.stdout.write(["\033[00;33m\033[",(i+1),";2H",(timer[i]==0?'		 ':timetostr(timer[i]))].join(''));
 	}
+	process.stdout.write(["\033[00;33m\033[",(items.length+1),";2H        "].join(''));
 	process.stdout.write(["\033[",row,";",(col+14),"H\033[00;37m"].join(''));
 
 	setTimeout(refresh,1000);
 }
 process.stdin.on('keypress', function(chr, key) {
-	process.stdout.write("\033["+row+";"+(col+14)+"H");
+	process.stdout.write(["\033[",row,";",(col+14),"H"].join(''));
 	if (key==undefined) {
 		item=[item,chr].join('');
 		col+=(chr.charCodeAt(0)<9000)?1:2;
