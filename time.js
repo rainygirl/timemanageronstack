@@ -49,7 +49,7 @@ var refresh=function(){
 			timer[i]=0;
 		else 
 			timer[i]++;
-		process.stdout.write(["\033[00;33m\033[",(i+1),";2H",(timer[i]==0?'         ':timetostr(timer[i]))].join(''));
+		process.stdout.write(["\033[00;33m\033[",(i+1),";2H",(timer[i]==0?'		 ':timetostr(timer[i]))].join(''));
 	}
 	process.stdout.write(["\033[",row,";",(col+14),"H\033[00;37m"].join(''));
 
@@ -59,8 +59,8 @@ process.stdin.on('keypress', function(chr, key) {
 	process.stdout.write("\033["+row+";"+(col+14)+"H");
 	if (key==undefined) {
 		item=[item,chr].join('');
-        col+=(chr.charCodeAt(0)<9000)?1:2;
-        process.stdout.write(chr);
+		col+=(chr.charCodeAt(0)<9000)?1:2;
+		process.stdout.write(chr);
 	}
 	else if (key.name.length==1) {
 		item=[item,key.name].join('');
@@ -72,7 +72,7 @@ process.stdin.on('keypress', function(chr, key) {
 			if(row==1) break;
 			if(item=='') {
 				if (items.length==row) {
-					process.stdout.write(["\033[",(items.length),';2H                                                   \033[',row,';',(col+14),'H'].join(''));
+					process.stdout.write(["\033[",(items.length),';2H												   \033[',row,';',(col+14),'H'].join(''));
 					items.remove(items.length-1);
 					timer.remove(items.length-1);
 				}
@@ -82,18 +82,18 @@ process.stdin.on('keypress', function(chr, key) {
 			}
 			row--;
 			process.stdout.write("\033[1A");
-            if(items.length==row-1) {
-                process.stdout.write("\033[",row,";15H");
-                col=1;
-            }
-            else { 
+			if(items.length==row-1) {
+				process.stdout.write("\033[",row,";15H");
+				col=1;
+			}
+			else { 
 				charlen=len(items[row-1]);
-                if(charlen<col-1) 
-                    process.stdout.write("\033["+(col-charlen-1)+"D");
-                else if(charlen>col-1) 
-                    process.stdout.write("\033["+(charlen-col+1)+"C");
-                col=charlen+1;
-            }
+				if(charlen<col-1) 
+					process.stdout.write("\033["+(col-charlen-1)+"D");
+				else if(charlen>col-1) 
+					process.stdout.write("\033["+(charlen-col+1)+"C");
+				col=charlen+1;
+			}
 			item=items[row-1];
 			break;
 		case 'down' :
@@ -136,14 +136,14 @@ process.stdin.on('keypress', function(chr, key) {
 			item=item.substr(0,item.length-1);
 			col-=chrwidth;
 			if(chrwidth==1)
-	            process.stdout.write("\033[1D \033[1D");
+				process.stdout.write("\033[1D \033[1D");
 			else
 				process.stdout.write("\033[2D  \033[2D");
 			break;
 		case 'space':
 			item=[item,' '].join('');
 			col++;
-            process.stdout.write(" ");
+			process.stdout.write(" ");
 			break;
 		default:
 			break;
