@@ -1,6 +1,11 @@
 // Time management based on stack
-// Source code is Developed by rainygirl ; http://rainygirl.com
+//
+// Source code is developed by rainygirl ; http://rainygirl.com
 // Idea by rath ; http://xrath.com/2012/05/time-management-based-on-stack/#comments
+//
+// Usage: 
+// > node time.js
+// on TTY termianl
 
 var tty = require('tty');
 var timer=[0];
